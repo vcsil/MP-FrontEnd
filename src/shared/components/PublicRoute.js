@@ -4,10 +4,11 @@ import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth.js";
 
 function PublicRoute({ restricted, children }) {
-    const { auth } = useAuth();
+    const { user } = useAuth();
 
-    if (auth?.accessToken && restricted) {
-        return <Navigate to="/" replace />;
+    // Redireciona par a rota autenticada '/home'
+    if (user?.accessToken && restricted) {
+        return <Navigate to="/home" replace />;
     }
 
     return children;
